@@ -19,8 +19,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc",
-    "start": "node dist/index.js",
+    "build": "docker-compose build",
+    "start": "docker compose up",
     "dev": "nodemon app/index.ts --config nodemon.json"
   },
   "keywords": [],

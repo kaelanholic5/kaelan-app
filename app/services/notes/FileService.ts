@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { notes } from '../../data/notes/data';
+import { notes } from '../../data/notes/Data';
 
 const noteFileString: string = '/app/data/notes/notes.json';
 const filePath: string = process.cwd();

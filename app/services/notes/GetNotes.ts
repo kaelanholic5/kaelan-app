@@ -1,4 +1,4 @@
-import { notes } from '../../data/notes/data';
+import { notes } from '../../data/notes/Data';
 import { Note } from '../../types/notes/NoteTypes';
 
 export default function () {

@@ -1,4 +1,4 @@
-import { notes } from '../../data/notes/data';
+import { notes } from '../../data/notes/Data';
 import { updateDataFile } from './FileService';
 
 export default async function () {

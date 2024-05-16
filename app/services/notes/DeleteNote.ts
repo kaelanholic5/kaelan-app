@@ -1,4 +1,4 @@
-import { notes } from '../../data/notes/data';
+import { notes } from '../../data/notes/Data';
 import { DeleteNoteRequest } from '../../types/notes/NoteTypes';
 import { updateDataFile } from './FileService';
 

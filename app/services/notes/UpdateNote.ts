@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon';
 import { updateDataFile } from './FileService';
 import { Note, UpdateNoteRequest } from '../../types/notes/NoteTypes';
-import { notes } from '../../data/notes/data';
+import { notes } from '../../data/notes/Data';
 
 export default async function (request: UpdateNoteRequest) {
     const existingNote = notes.get(request.id);
