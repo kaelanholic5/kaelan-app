@@ -8,8 +8,9 @@ import security from '../services/SecurityService';
 import { CreateNoteRequest, DeleteNoteRequest, UpdateNoteRequest } from '../types/notes/NoteTypes';
 import { handleError } from '../services/ErrorService';
 
+const baseUrl = '/notes';
 export default function createNoteRoutes(app: Express) {
-    app.post("/createNote", async (req: Request, res: Response) => {
+    app.post(`${baseUrl}/createNote`, async (req: Request, res: Response) => {
         if (security(req)) {
             try {
                 let request: CreateNoteRequest = req.body;
@@ -22,7 +23,7 @@ export default function createNoteRoutes(app: Express) {
         }
     });
     
-    app.delete("/deleteNote", async (req: Request, res: Response) => {
+    app.delete(`${baseUrl}/deleteNote`, async (req: Request, res: Response) => {
         if (security(req)) {
             try {
                 let request: DeleteNoteRequest = req.body;
@@ -35,7 +36,7 @@ export default function createNoteRoutes(app: Express) {
         }
     });
     
-    app.post("/clearNotes", async (req: Request, res: Response) => {
+    app.post(`${baseUrl}/clearNotes`, async (req: Request, res: Response) => {
         if (security(req)) {
             try {
                 res.send(await clearNotes());
@@ -47,7 +48,7 @@ export default function createNoteRoutes(app: Express) {
         }
     });
     
-    app.put("/updateNote", async (req: Request, res: Response) => {
+    app.put(`${baseUrl}/updateNote`, async (req: Request, res: Response) => {
         if (security(req)) {
             try {
                 let request: UpdateNoteRequest = req.body;
@@ -60,7 +61,7 @@ export default function createNoteRoutes(app: Express) {
         }
     });
     
-    app.get("/getNotes", (req: Request, res: Response) => {
+    app.get(`${baseUrl}/getNotes`, (req: Request, res: Response) => {
         if (security(req)) {
             try {
                 res.send(getNotes());
@@ -70,5 +71,8 @@ export default function createNoteRoutes(app: Express) {
         } else {
             res.status(401).send('Unauthorized');
         }
+    });
+    app.get(`/`, async (req: Request, res: Response) => {
+        res.send('hello!');
     });
 }

@@ -1,7 +1,11 @@
 services:
   app:
+    container_name: kaelan-app
+    image: kaelan-app:1.0.0
     build:
       context: .
       dockerfile: dockerfile.dev
     ports:
       - "3000:3000"
+    # expose:
+    #   - "3000"
