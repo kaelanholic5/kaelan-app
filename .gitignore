@@ -2,3 +2,5 @@
 *.notes.json
 *.env
 node_modules
+kubectl
+kubectl.sha256
