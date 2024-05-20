@@ -5,7 +5,7 @@ import getNotes from '../services/notes/GetNotes';
 import updateNote from '../services/notes/UpdateNote';
 import clearNotes from '../services/notes/ClearNotes';
 import security from '../services/SecurityService';
-import { CreateNoteRequest, DeleteNoteRequest, UpdateNoteRequest } from '../types/notes/NoteTypes';
+import { CreateNoteRequest, UpdateNoteRequest } from '../types/notes/NoteTypes';
 import { handleError } from '../services/ErrorService';
 
 const baseUrl = '/notes';
@@ -23,11 +23,11 @@ export default function createNoteRoutes(app: Express) {
         }
     });
     
-    app.delete(`${baseUrl}/deleteNote`, async (req: Request, res: Response) => {
+    app.delete(`${baseUrl}/deleteNote/:id`, async (req: Request, res: Response) => {
         if (security(req)) {
             try {
-                let request: DeleteNoteRequest = req.body;
-                res.send(await deleteNote(request));
+                const id = req?.params?.id;
+                res.send(await deleteNote(id));
             } catch (err) {
                 res.status(400).send(handleError(err, 'Error Deleting Note'));
             }
@@ -48,11 +48,12 @@ export default function createNoteRoutes(app: Express) {
         }
     });
     
-    app.put(`${baseUrl}/updateNote`, async (req: Request, res: Response) => {
+    app.put(`${baseUrl}/updateNote/:id`, async (req: Request, res: Response) => {
         if (security(req)) {
             try {
                 let request: UpdateNoteRequest = req.body;
-                res.send(await updateNote(request));
+                const id = req?.params?.id;
+                res.send(await updateNote(id, request));
             } catch (err) {
                 res.status(400).send(handleError(err, 'Error Updating Note'));
             }
@@ -61,10 +62,10 @@ export default function createNoteRoutes(app: Express) {
         }
     });
     
-    app.get(`${baseUrl}/getNotes`, (req: Request, res: Response) => {
+    app.get(`${baseUrl}/getNotes`, async (req: Request, res: Response) => {
         if (security(req)) {
             try {
-                res.send(getNotes());
+                res.send(await getNotes());
             } catch (err) {
                 res.status(400).send(handleError(err, 'Error Getting Notes'));
             }

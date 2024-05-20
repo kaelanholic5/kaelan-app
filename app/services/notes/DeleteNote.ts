@@ -1,13 +1,17 @@
-import { notes } from '../../data/notes/Data';
-import { DeleteNoteRequest } from '../../types/notes/NoteTypes';
-import { updateDataFile } from './FileService';
+import { ObjectId } from 'mongodb';
+import { collections } from '../mongodb/MongoDBService';
 
-export default async function (request: DeleteNoteRequest) {
-    const existingNote = notes.get(request.id);
-    if (!existingNote) {
-        throw new Error('No note with that id');
+export default async function (id: string) {
+    const query = { _id: new ObjectId(id) };
+    let response;
+    if (collections.notes) {
+        response = await collections.notes.deleteOne(query);
     }
-    notes.delete(existingNote.id);
-    await updateDataFile();
-    return JSON.stringify(`Successfully Deleted Note ${existingNote.id}`);
+    if (response && response.deletedCount) {
+        return JSON.stringify(`Successfully Deleted Note ${id}`);
+    } else if (!response) {
+        return JSON.stringify(`There was an issue with deleting Note ${id}`);
+    } else if (!response.deletedCount) {
+        return JSON.stringify(`There was no Note found with id ${id}`);
+    }    
 }

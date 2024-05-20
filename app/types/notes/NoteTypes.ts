@@ -1,10 +1,11 @@
 import { DateTime } from 'luxon';
+import { ObjectId } from 'mongodb';
 
 export type Note = {
     note: string,
-    createdDate: DateTime,
-    updatedDate: DateTime,
-    id: string,
+    createdDate?: DateTime,
+    updatedDate?: DateTime,
+    _id?: ObjectId
 }
 
 export type CreateNoteRequest = {
@@ -12,12 +13,7 @@ export type CreateNoteRequest = {
 }
 
 export type UpdateNoteRequest = {
-    note: string,
-    id: string,
-}
-
-export type DeleteNoteRequest = {
-    id: string,
+    note: string
 }
 
 export type NoteFromFile = {

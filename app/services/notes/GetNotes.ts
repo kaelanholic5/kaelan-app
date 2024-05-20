@@ -1,8 +1,10 @@
-import { notes } from '../../data/notes/Data';
 import { Note } from '../../types/notes/NoteTypes';
+import { collections } from '../mongodb/MongoDBService';
+export default async function () {
+    let notesList: Note[] = [];
 
-export default function () {
-    console.log('getting notes');
-    const notesList: Note[] = [...notes.values()];
+    if (collections.notes){
+        notesList = await collections.notes.find().toArray();
+    }
     return JSON.stringify(notesList);
 }

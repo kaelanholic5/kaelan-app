@@ -1,8 +1,6 @@
 import { DateTime } from 'luxon';
-import { v4 as uuidv4 } from 'uuid';
-import { updateDataFile } from './FileService';
 import { CreateNoteRequest, Note } from '../../types/notes/NoteTypes';
-import { notes } from '../../data/notes/Data';
+import { collections } from '../mongodb/MongoDBService';
 
 export default async function (request: CreateNoteRequest) {
     const now: DateTime = DateTime.now();
@@ -10,9 +8,12 @@ export default async function (request: CreateNoteRequest) {
         note: request.note,
         createdDate: now,
         updatedDate: now,
-        id: uuidv4(),
     }
-    notes.set(newNote.id, newNote);
-    await updateDataFile();
+    let savedNote;
+    if (collections.notes) {
+        savedNote = await collections.notes.insertOne(newNote);
+        console.log('made ', savedNote);
+        newNote._id = savedNote.insertedId;
+    }
     return JSON.stringify(newNote);
 }
