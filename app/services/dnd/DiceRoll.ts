@@ -19,6 +19,6 @@ export async function rollDice(request: DiceRollRequest) {
 
 function rollSingleDice(diceSides: number) {
     const minCeiled = Math.ceil(1);
-    const maxFloored = Math.floor(diceSides + 1);
-    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
+    const maxCeiled = Math.ceil(diceSides);
+    return Math.floor(Math.random() * (maxCeiled - minCeiled) + minCeiled);
   }

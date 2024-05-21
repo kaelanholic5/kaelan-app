@@ -1,4 +1,4 @@
 {
-    "ignore": ["app/data/notes/notes.json", ".git", "node_modules/**/node_modules", "dist"],
+    "ignore": [".git", "node_modules", "dist"],
     "restart": "on-failure"
 }
