@@ -12,7 +12,6 @@ export default async function (request: CreateNoteRequest) {
     let savedNote;
     if (collections.notes) {
         savedNote = await collections.notes.insertOne(newNote);
-        console.log('made ', savedNote);
         newNote._id = savedNote.insertedId;
     }
     return JSON.stringify(newNote);
