@@ -1,12 +1,13 @@
 import { StatsRoll, StatsRollRequest, StatsRollResponse, StatsRollRound } from "../../types/dnd/StatsRoll";
 import { collections } from "../mongodb/MongoDBService";
+import { rollSingleDice } from "./DiceRoll";
 
 export async function rollStatsWithMinimum(request: StatsRollRequest): Promise<string> {
     if (request.minimum && request.minimum >= 108) {
         return 'Set a reasonable minimum!'; 
     }
     if(!request.name) {
-        return 'name required';
+        return 'Name required!';
     }
     let total = 0;
     let statsRoll: StatsRollResponse = {
@@ -44,12 +45,9 @@ export function rollStats(): StatsRollResponse {
 }
 
 function rollSingleStatsRoll(): StatsRollRound {
-    const minCeiled = Math.ceil(1);
-    const maxCeiled = Math.ceil(6);
-
     let allRolls = [];
     for(let i = 0; i < 4; i++) {
-        allRolls.push(Math.floor(Math.random() * (maxCeiled - minCeiled) + minCeiled));
+        allRolls.push(rollSingleDice(6));
     }
     allRolls.sort((a, b) => {return b-a});
     let usedRolls = allRolls.slice(0, 3);

@@ -12,5 +12,7 @@ export type DiceRollResponse = {
 export type DiceRoll = {
     rolls: number[],
     total: number,
+    numberOfDice: number,
+    numberOfSides: number,
     name: string
 }

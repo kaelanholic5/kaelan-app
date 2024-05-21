@@ -4,13 +4,13 @@ import { collections } from "../mongodb/MongoDBService";
 export async function rollDice(request: DiceRollRequest): Promise<string> {
     let rolls: number[] = [];
     if (!request.numberOfDice) {
-        return 'Number of dice required!';
+        return 'Number of Dice required!';
     }
     if (!request.numberOfSides) {
-        return 'Number of sides required!';
+        return 'Number of Sides required!';
     }
     if (!request.name) {
-        return 'name required';
+        return 'Name required!';
     }
     let response: DiceRollResponse = { rolls, total:0 };
     for(let i = 0; i < request.numberOfDice; i++) {
@@ -22,7 +22,9 @@ export async function rollDice(request: DiceRollRequest): Promise<string> {
     const newRoll: DiceRoll = {
         rolls: response.rolls,
         total: response.total,
-        name: request.name
+        name: request.name,
+        numberOfDice: request.numberOfDice,
+        numberOfSides: request.numberOfSides
     }
     if (collections.diceRolls) {
         await collections.diceRolls.insertOne(newRoll);
@@ -31,7 +33,7 @@ export async function rollDice(request: DiceRollRequest): Promise<string> {
     return JSON.stringify(response);
 }
 
-function rollSingleDice(diceSides: number) {
+export function rollSingleDice(diceSides: number) {
     const minCeiled = Math.ceil(1);
     const maxCeiled = Math.ceil(diceSides);
     return Math.floor(Math.random() * (maxCeiled - minCeiled) + minCeiled);

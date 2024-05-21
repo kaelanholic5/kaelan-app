@@ -12,3 +12,7 @@ and exposes port 8080 with the defined endpoints (routing directory)
 
 I used to be able to run npm run dev and setup the api quickly locally, but the database connection is rejected without the kubernetes setup.
 I'm Leaving the command and package because I can configure nodemon to connect to an external database in the future
+
+To rebuild your code and redeploy locally use these commands
+npm run docker:build
+npm run kube:restart
