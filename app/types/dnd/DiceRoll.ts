@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb"
+
 export type DiceRollRequest = {
     numberOfDice: number,
     numberOfSides: number,
@@ -10,6 +12,7 @@ export type DiceRollResponse = {
 }
 
 export type DiceRoll = {
+    _id?: ObjectId,
     rolls: number[],
     total: number,
     numberOfDice: number,

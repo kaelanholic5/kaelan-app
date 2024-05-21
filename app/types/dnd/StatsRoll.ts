@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb"
+
 export type StatsRollRound = {
     rolls: number[],
     usedRolls: number[],
@@ -11,6 +13,7 @@ export type StatsRollResponse = {
 }
 
 export type StatsRoll = {
+    _id?: ObjectId,
     rolls: StatsRollRound[],
     total: number,
     name: string
