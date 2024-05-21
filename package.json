@@ -6,7 +6,8 @@
     "axios": "^1.6.8",
     "express": "^4.19.2",
     "luxon": "^3.4.4",
-    "mongodb": "^6.6.2"
+    "mongodb": "^6.6.2",
+    "npx": "^3.0.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
@@ -19,11 +20,13 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "docker-compose build",
-    "start": "docker compose up",
+    "docker:build": "docker-compose build",
+    "docker:start": "docker compose up",
     "kube:start": "kubectl apply -f kubernetes-deployment.yaml",
-    "kube:clear": "kubectl delete -f kubernetes-deployment.yaml",
-    "dev": "nodemon app/index.ts --config nodemon.json"
+    "kube:stop": "kubectl delete -f kubernetes-deployment.yaml",
+    "dev": "nodemon app/index.ts --config nodemon.json",
+    "build": "npx tsc",
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
