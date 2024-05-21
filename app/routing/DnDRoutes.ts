@@ -1,6 +1,6 @@
 import { Express, Request, Response } from 'express';
-import { handleError } from '../services/ErrorService';
-import security from '../services/SecurityService';
+import { handleError } from '../services/general/ErrorService';
+import security from '../services/general/SecurityService';
 import { rollDice } from '../services/dnd/DiceRoll';
 import { DiceRollRequest } from '../types/dnd/DiceRoll';
 

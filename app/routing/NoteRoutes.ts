@@ -4,9 +4,9 @@ import deleteNote from '../services/notes/DeleteNote';
 import getNotes from '../services/notes/GetNotes';
 import updateNote from '../services/notes/UpdateNote';
 import clearNotes from '../services/notes/ClearNotes';
-import security from '../services/SecurityService';
+import security from '../services/general/SecurityService';
 import { CreateNoteRequest, UpdateNoteRequest } from '../types/notes/NoteTypes';
-import { handleError } from '../services/ErrorService';
+import { handleError } from '../services/general/ErrorService';
 
 const baseUrl = '/notes';
 export default function createNoteRoutes(app: Express) {
