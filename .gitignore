@@ -5,3 +5,4 @@ node_modules
 kubectl
 kubectl.sha256
 dist
+bin
