@@ -1,8 +1,10 @@
 # kaelan-app
 ## This is where I'm creating an api for myself to learn new tools.
 
-Commands to run in order to deploy kubernetes setup. This will expose http://localhost:8080.
+Commands to run in order to deploy Node kubernetes setup. This will expose http://localhost:8080.
+CD into node-app directory then run
 ```
+nvm use (must have NVM installed)
 npm install
 npm run docker:build
 npm run kube:start
@@ -20,4 +22,9 @@ To rebuild your code and redeploy locally use these commands
 ```
 npm run docker:build
 npm run kube:restart
+```
+
+To stop running the Kubernetes deployment run:
+```
+npm run kube:stop
 ```

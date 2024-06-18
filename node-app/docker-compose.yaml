@@ -1,0 +1,11 @@
+services:
+  app:
+    container_name: node-app
+    image: node-app:1.0.0
+    build:
+      context: .
+      dockerfile: dockerfile.dev
+    volumes:
+      - ./src:/usr/app/
+    ports:
+      - "3000:3000"
