@@ -6,3 +6,4 @@ kubectl
 kubectl.sha256
 dist
 bin
+obj
