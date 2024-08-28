@@ -1,8 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-var counter = 0;
-var max = args.Length is not 0 ? Convert.ToInt32(args[0]) : -1;
-while (max is -1 || counter < max)
-{
-    Console.WriteLine($"Counter: {++counter}");
-    await Task.Delay(TimeSpan.FromMilliseconds(1_000));
-}
+﻿var app = WebApplication.Create();
+
+DnDRoutes.mapDnDRoutes(app);
+
+Console.WriteLine("Environment Variables");
+Console.WriteLine(EnvConfig.GetDatabaseString2());
+Console.WriteLine(EnvConfig.GetPortString2());

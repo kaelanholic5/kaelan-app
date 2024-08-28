@@ -1,9 +1,12 @@
 *.log
 *.notes.json
 *.env
+.DS_Store
+.vscode/
 node_modules
 kubectl
 kubectl.sha256
 dist
 bin
 obj
+kaelan-app.sln
